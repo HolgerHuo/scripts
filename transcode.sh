@@ -114,11 +114,8 @@ show_stats() {
 
 cleanup() {
 	INTERRUPTED=1
-	log "[INFO] Received interrupt signal, stopping processes"
-
-	pkill -P "${$}" ffmpeg 2>/dev/null || true
-
-	log "[INFO] Removing temporary files"
+	
+	log "[INFO] Transcoding cancelled, removing temporary files"
 	find "${DEST_DIR}" -type f -name "*.tmp" -delete 2>/dev/null || true
 
 	show_stats
